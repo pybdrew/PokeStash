@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-StashApplication<stash>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.poke.stash.StashApplication",
+            "projectName": "stash",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
