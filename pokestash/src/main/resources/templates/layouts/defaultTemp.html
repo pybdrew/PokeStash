@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Pull in Bootstrap and other head content -->
+    <th:block th:replace="layouts/common :: bootstrap"></th:block>
+
+    <!-- Page title -->
+    <title th:text="${title} ?: 'Home'">PokéStash</title>
+</head>
+
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+    <!-- Header with navbar -->
+    <th:block th:replace="layouts/common :: header"></th:block>
+
+    <!-- Main content from pages -->
+    <main layout:fragment="content" style="flex: 1;"></main>
+
+    <!-- Footer -->
+    <th:block th:replace="layouts/common :: footer"></th:block>
+</body>
+</html>
