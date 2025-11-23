@@ -7,5 +7,5 @@ import com.poke.stash.entity.PokebagEntity;
 @Repository
 public interface PokebagRepository extends JpaRepository<PokebagEntity, Integer>
 {
-    
+    PokebagEntity findByUserId(int userId);
 }

@@ -5,10 +5,23 @@
 <head>
     <title th:text="${title}">Home</title>
 </head>
-
 <body>
     <div layout:fragment="content">
-        <h1>test</h1>
+        <h1>Poké Bag / Store Emulator</h1>
+        <p>
+            This application is a Poké Bag / Item Store emulator where users can browse items, 
+            add them to their personal bag, modify quantities, or remove items. Prices are not 
+            used, as the application is intended for learning cloud computing concepts and 
+            developing partner collaboration skills.
+        </p>
+        <p>
+            The backend is built using Spring Boot, with security features such as password 
+            hashing for user accounts. The system demonstrates CRUD operations, user 
+            authentication, and management of user-specific inventory in a cloud-friendly setup.
+        </p>
+        <p>
+            <strong>Get started now:</strong> <a href="/register">Register</a>, <a href="/login">Login</a>, and check it out!
+        </p>
     </div>
 </body>
 </html>

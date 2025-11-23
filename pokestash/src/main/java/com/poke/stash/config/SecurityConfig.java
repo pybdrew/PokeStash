@@ -27,7 +27,7 @@ public class SecurityConfig
         http
             .authorizeHttpRequests(authorize -> authorize
                 // allow pages for everyone here
-                .requestMatchers("/", "/register").permitAll()
+                .requestMatchers("/", "/register", "/login").permitAll()
                 // all other pages require login
                 .anyRequest().authenticated()
             )

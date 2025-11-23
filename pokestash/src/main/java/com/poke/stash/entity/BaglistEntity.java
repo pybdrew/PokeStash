@@ -22,6 +22,9 @@ public class BaglistEntity
     @Column(name="pokeitems_ITEM_ID")
     private int pokeitemId;
 
+    @Column(name="quantity")
+    private int quantity = 1;
+
     // ---- Getters and Setters ----
     public int getListId()
     { 
@@ -48,5 +51,13 @@ public class BaglistEntity
     public void setPokeitemId(int pokeitemId)
     { 
         this.pokeitemId = pokeitemId;
+    }
+    public int getQuantity()
+    {
+        return quantity;
+    }
+    public void setQuantity(int quantity)
+    { 
+        this.quantity = quantity;
     }
 }

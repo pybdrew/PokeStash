@@ -29,4 +29,9 @@ public class UserService
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
+
+    public boolean existsByUserName(String userName) 
+    {
+        return userRepository.existsByUserName(userName);
+    }
 }

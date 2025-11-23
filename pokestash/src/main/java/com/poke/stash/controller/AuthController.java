@@ -6,14 +6,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import com.poke.stash.dto.UserDTO;
 import com.poke.stash.entity.UserEntity;
 import com.poke.stash.service.UserService;
 import jakarta.validation.Valid;
-
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 @Controller
@@ -22,9 +18,11 @@ public class AuthController
 
     private final UserService userService;
 
-    AuthController(UserService userService) {
+    AuthController(UserService userService)
+    {
         this.userService = userService;
     }
+
     @GetMapping("/")
     public String homePage(Model model)
     {
@@ -46,16 +44,25 @@ public class AuthController
     }
 
     @PostMapping("/register")
-    public String registerUser(@Valid @ModelAttribute("userDTO") UserDTO userDTO, BindingResult bindingResult, Model model)
+    public String registerUser(@Valid @ModelAttribute("userDTO") UserDTO userDTO, BindingResult bindingResult, Model model) 
     {
-        if(bindingResult.hasErrors())
+        // Check for field validation errors first
+        if (bindingResult.hasErrors())
         {
             return "register";
         }
 
-        if(!userDTO.getPassword().equals(userDTO.getConfirmPassword()))
+        // Check if passwords match
+        if (!userDTO.getPassword().equals(userDTO.getConfirmPassword())) 
         {
-            model.addAttribute("passwordError", "Passwords do not match");
+            bindingResult.rejectValue("confirmPassword", "error.userDTO", "Passwords do not match");
+            return "register";
+        }
+
+        // Check if username is already taken
+        if (userService.existsByUserName(userDTO.getUserName())) 
+        {
+            bindingResult.rejectValue("userName", "error.userDTO", "Username already taken");
             return "register";
         }
 
@@ -66,11 +73,10 @@ public class AuthController
         userEntity.setUserName(userDTO.getUserName());
         userEntity.setPassword(userDTO.getPassword());
 
-        // save user
+        // Save user
         userService.registerUser(userEntity);
+
         return "redirect:/";
     }
-    
 
-    
 }

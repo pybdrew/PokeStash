@@ -3,18 +3,26 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/defaultTemp}">
 <head>
-    <title th:text="${title}">Item Menu</title>
+    <title th:text="${title}">Item Store</title>
 </head>
 <body>
-    <div layout:fragment="content">
-        <div class="d-flex justify-content-center align-items-center">
-            <div class="card p-4" style="max-width: 400px; width: 100%;">
-               <!-- Content for item menu goes here
-                Will either need to make a list that can be intereacted with
-                or will need to create a form similar to pokeItem where the 
-                user will have to enter an item number to be added to their bag -->
-            </div>
+<div layout:fragment="content">
+    <div class="d-flex justify-content-center align-items-center mt-5">
+        <div class="card p-4" style="max-width: 500px; width: 100%;">
+            <h4 class="text-center mb-3">Item Store</h4>
+            <ul class="list-group">
+                <li class="list-group-item" th:each="item : ${items}">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong th:text="${item.name}">Item Name</strong><br>
+                            <small th:text="${item.description}">Item description</small><br>
+                        </div>
+                        <a th:href="@{/addToBag/{id}(id=${item.itemId})}" class="btn btn-sm btn-primary">Add</a>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
+</div>
 </body>
 </html>

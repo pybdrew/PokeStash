@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/defaultTemp}">
+<head>
+    <title th:text="${title}">Your Bag</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="d-flex justify-content-center align-items-center mt-5">
+        <div class="card p-4" style="max-width: 600px; width: 100%;">
+            <h4 class="text-center mb-3">Your Bag</h4>
+
+            <ul class="list-group">
+                <li class="list-group-item" th:each="bagItem : ${bagItems}">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong th:text="${bagItem.name}">Item Name</strong><br>
+                            <small th:text="${bagItem.description}">Item Description</small><br>
+                            <span>Quantity: <span th:text="${bagItem.quantity}">0</span></span>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <a th:href="@{/addToBag/{id}(id=${bagItem.itemId})}" class="btn btn-sm btn-primary">
+                                Modify
+                            </a>
+                            <form th:action="@{/removeFromBag}" method="post" style="margin:0;">
+                                <input type="hidden" name="itemId" th:value="${bagItem.itemId}" />
+                                <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

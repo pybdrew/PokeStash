@@ -10,4 +10,5 @@ import com.poke.stash.entity.*;
 public interface UserRepository extends JpaRepository<UserEntity, Integer>
 {
     UserEntity findByUserName(String userName);
+    boolean existsByUserName(String userName);
 }

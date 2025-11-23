@@ -3,55 +3,58 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/defaultTemp}">
 <head>
-    <title th:text="${title}">Login</title>
+    <title th:text="${title}">Register</title>
 </head>
 
 <body>
     <div layout:fragment="content">
-        <div class="d-flex justify-content-center align-items-center">
+        <div class="d-flex justify-content-center align-items-center mt-5">
             <div class="col-md-6">
-                <div class="card p-4" style="max-width: 400px; width: 100%;">
+                <div class="card p-4" style="max-width: 500px; width: 100%;">
+                    <h4 class="text-center mb-4">Register</h4>
                     <form th:action="@{/register}" th:object="${userDTO}" method="post" class="row g-3 needs-validation" novalidate>
-                        <div class="col-md-4">
-                            <label for="validationCustom01" class="form-label">First name</label>
-                            <input type="text" th:field="*{firstName}" class="form-control" id="validationCustom01" placeholder="Enter First Name" required>
-                            <div class="valid-feedback">
-                            Looks good!
-                            </div>
+                        
+                        <!-- First Name -->
+                        <div class="col-md-6">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <input type="text" th:field="*{firstName}" class="form-control" id="firstName" placeholder="Enter First Name" required>
+                            <div class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
                         </div>
-                        <div class="col-md-4">
-                            <label for="validationCustom02" class="form-label">Last name</label>
-                            <input type="text" th:field="*{lastName}" class="form-control" id="validationCustom02" placeholder="Enter Last Name" required>
-                            <div class="valid-feedback">
-                            Looks good!
-                            </div>
+
+                        <!-- Last Name -->
+                        <div class="col-md-6">
+                            <label for="lastName" class="form-label">Last Name</label>
+                            <input type="text" th:field="*{lastName}" class="form-control" id="lastName" placeholder="Enter Last Name" required>
+                            <div class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
                         </div>
-                        <div class="col-md-4">
-                            <label for="validationCustomUsername" class="form-label">Username</label>
-                            <div class="input-group has-validation">
-                            <span class="input-group-text" id="inputGroupPrepend">@</span>
-                            <input type="text" th:field="*{userName}" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" placeholder="Enter Username">
-                            <div class="invalid-feedback">
-                                Please choose a username.
-                            </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="validationCustom02" class="form-label">Password</label>
-                            <input type="password" th:field="*{password}" class="form-control" id="validationCustom02" placeholder="Enter Password" required>
-                            <div class="valid-feedback">
-                            Looks good!
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="validationCustom02" class="form-label">Confirm Password</label>
-                            <input type="password" th:field="*{confirmPassword}" class="form-control" id="validationCustom02" placeholder="Confirm Password" required>
-                            <div class="valid-feedback">
-                            Looks good!
-                            </div>
-                        </div>
+
+                        <!-- Username -->
                         <div class="col-12">
-                            <button class="btn btn-primary" type="submit">Submit form</button>
+                            <label for="userName" class="form-label">Username</label>
+                            <div class="input-group has-validation">
+                                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                <input type="text" th:field="*{userName}" class="form-control" id="userName" placeholder="Enter Username" aria-describedby="inputGroupPrepend" required>
+                            </div>
+                            <div class="text-danger" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></div>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="col-md-6">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" th:field="*{password}" class="form-control" id="password" placeholder="Enter Password" required>
+                            <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="col-md-6">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input type="password" th:field="*{confirmPassword}" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
+                            <div class="text-danger" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></div>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="col-12 text-center">
+                            <button class="btn btn-primary w-50" type="submit">Register</button>
                         </div>
                     </form>
                 </div>
