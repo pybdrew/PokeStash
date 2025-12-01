@@ -3,46 +3,32 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/defaultTemp}">
 <head>
-    <title th:text="${title}">Modify Item</title>
-    <script>
-        function increment()
-        {
-            const qtyInput = document.getElementById('quantity');
-            qtyInput.value = parseInt(qtyInput.value) + 1;
-        }
-
-        function decrement()
-        {
-            const qtyInput = document.getElementById('quantity');
-            if (parseInt(qtyInput.value) > 0)
-            {
-                qtyInput.value = parseInt(qtyInput.value) - 1;
-            }
-        }
-    </script>
+    <title th:text="${title}">Poke Item</title>
 </head>
 <body>
-<div layout:fragment="content">
-    <div class="d-flex justify-content-center align-items-center mt-5">
-        <div class="card p-4" style="max-width: 400px; width: 100%;">
-            <h4 class="text-center mb-3" th:text="${item.name}">Item Name</h4>
-            <p class="text-center text-muted" th:text="${item.description}">Item Description</p>
-
-            <form th:action="@{/updateInventory}" method="post">
-                <input type="hidden" name="itemId" th:value="${item.itemId}"/>
-
-                <div class="d-flex justify-content-center align-items-center mb-3">
-                    <button type="button" class="btn btn-secondary me-2" onclick="decrement()">-</button>
-                    <input type="number" id="quantity" name="quantity" value="1" min="0" class="form-control text-center" style="width: 80px;">
-                    <button type="button" class="btn btn-secondary ms-2" onclick="increment()">+</button>
-                </div>
-
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </form>
+    <div layout:fragment="content">
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="card p-4" style="max-width: 400px; width: 100%;">
+                <form th:action="@{/pokeItem}" method="post">
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Item Name</label>
+                        <input type="text" name="name" class="form-control" placeholder="Enter Username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <input type="text" name="description" class="form-control" placeholder="Enter Description" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Price</label>
+                        <input type="text" name="price" class="form-control" placeholder="Enter Price" required>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>wwwm
+                </form>
+            </div>
         </div>
     </div>
-</div>
-</body>
+</body> 
 </html>
