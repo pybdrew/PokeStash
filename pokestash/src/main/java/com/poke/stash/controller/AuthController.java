@@ -1,5 +1,7 @@
 package com.poke.stash.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.poke.stash.dto.UserDTO;
 import com.poke.stash.entity.UserEntity;
 import com.poke.stash.service.UserService;
-import jakarta.validation.Valid;
 
 
 @Controller
