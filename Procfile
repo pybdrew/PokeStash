@@ -1,0 +1,1 @@
+web: java -jar pokestash/target/stash-0,0,1-SNAPSHOT.jar
