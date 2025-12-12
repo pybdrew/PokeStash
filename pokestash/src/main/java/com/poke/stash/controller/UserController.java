@@ -79,7 +79,7 @@ public class UserController
         }
         model.addAttribute("title", "Your Bag");
         model.addAttribute("bagItems", displayItems);
-        return "/dashboard";
+        return "dashboard";
     }
 
 
@@ -89,7 +89,7 @@ public class UserController
         // Fetch all items from the database
         model.addAttribute("title", "Item Store");
         model.addAttribute("items", itemRepository.findAll());
-        return "/itemMenu";
+        return "itemMenu";
     }
 
     @GetMapping("/addToBag/{itemId}")
@@ -102,7 +102,7 @@ public class UserController
         }
         model.addAttribute("item", item);
         model.addAttribute("title", "Modify Item");
-        return "/pokeItem";
+        return "pokeItem";
     }
     
     @PostMapping("/updateInventory")
